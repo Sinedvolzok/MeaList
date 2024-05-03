@@ -15,6 +15,7 @@
 		531DDAE12BE4C176003004DB /* MeaListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 531DDAE02BE4C176003004DB /* MeaListTests.swift */; };
 		531DDAEB2BE4C176003004DB /* MeaListUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 531DDAEA2BE4C176003004DB /* MeaListUITests.swift */; };
 		531DDAED2BE4C176003004DB /* MeaListUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 531DDAEC2BE4C176003004DB /* MeaListUITestsLaunchTests.swift */; };
+		531DDAFA2BE4C7E5003004DB /* MeaList.md in Resources */ = {isa = PBXBuildFile; fileRef = 531DDAF92BE4C7E5003004DB /* MeaList.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +47,7 @@
 		531DDAE62BE4C176003004DB /* MeaListUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MeaListUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		531DDAEA2BE4C176003004DB /* MeaListUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeaListUITests.swift; sourceTree = "<group>"; };
 		531DDAEC2BE4C176003004DB /* MeaListUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeaListUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		531DDAF92BE4C7E5003004DB /* MeaList.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = MeaList.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +78,7 @@
 		531DDAC12BE4C173003004DB = {
 			isa = PBXGroup;
 			children = (
+				531DDAF92BE4C7E5003004DB /* MeaList.md */,
 				531DDACC2BE4C173003004DB /* MeaList */,
 				531DDADF2BE4C176003004DB /* MeaListTests */,
 				531DDAE92BE4C176003004DB /* MeaListUITests */,
@@ -234,6 +237,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				531DDAFA2BE4C7E5003004DB /* MeaList.md in Resources */,
 				531DDAD72BE4C175003004DB /* Preview Assets.xcassets in Resources */,
 				531DDAD42BE4C175003004DB /* Assets.xcassets in Resources */,
 			);
