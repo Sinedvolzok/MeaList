@@ -16,6 +16,9 @@
 		531DDAEB2BE4C176003004DB /* MeaListUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 531DDAEA2BE4C176003004DB /* MeaListUITests.swift */; };
 		531DDAED2BE4C176003004DB /* MeaListUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 531DDAEC2BE4C176003004DB /* MeaListUITestsLaunchTests.swift */; };
 		531DDAFA2BE4C7E5003004DB /* MeaList.md in Resources */ = {isa = PBXBuildFile; fileRef = 531DDAF92BE4C7E5003004DB /* MeaList.md */; };
+		531DDAFE2BE8FAD3003004DB /* MLContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 531DDAFD2BE8FAD3003004DB /* MLContainer.swift */; };
+		531DDB002BEA0C72003004DB /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 531DDAFF2BEA0C72003004DB /* Date+.swift */; };
+		531DDB022BEABBFD003004DB /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 531DDB012BEABBFD003004DB /* Date.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +51,9 @@
 		531DDAEA2BE4C176003004DB /* MeaListUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeaListUITests.swift; sourceTree = "<group>"; };
 		531DDAEC2BE4C176003004DB /* MeaListUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeaListUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		531DDAF92BE4C7E5003004DB /* MeaList.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = MeaList.md; sourceTree = "<group>"; };
+		531DDAFD2BE8FAD3003004DB /* MLContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MLContainer.swift; sourceTree = "<group>"; };
+		531DDAFF2BEA0C72003004DB /* Date+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
+		531DDB012BEABBFD003004DB /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +110,8 @@
 				531DDAD12BE4C173003004DB /* Item.swift */,
 				531DDAD32BE4C175003004DB /* Assets.xcassets */,
 				531DDAD52BE4C175003004DB /* Preview Content */,
+				531DDAFD2BE8FAD3003004DB /* MLContainer.swift */,
+				531DDAFF2BEA0C72003004DB /* Date+.swift */,
 			);
 			path = MeaList;
 			sourceTree = "<group>";
@@ -120,6 +128,7 @@
 			isa = PBXGroup;
 			children = (
 				531DDAE02BE4C176003004DB /* MeaListTests.swift */,
+				531DDB012BEABBFD003004DB /* Date.swift */,
 			);
 			path = MeaListTests;
 			sourceTree = "<group>";
@@ -264,7 +273,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				531DDAFE2BE8FAD3003004DB /* MLContainer.swift in Sources */,
 				531DDAD02BE4C173003004DB /* ContentView.swift in Sources */,
+				531DDB002BEA0C72003004DB /* Date+.swift in Sources */,
 				531DDAD22BE4C173003004DB /* Item.swift in Sources */,
 				531DDACE2BE4C173003004DB /* MeaListApp.swift in Sources */,
 			);
@@ -275,6 +286,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				531DDAE12BE4C176003004DB /* MeaListTests.swift in Sources */,
+				531DDB022BEABBFD003004DB /* Date.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -11,6 +11,7 @@ import SwiftData
 struct ContentView: View {
     @Environment(\.modelContext) private var modelContext
     @Query private var items: [Item]
+    let date = Date.getWeeksRange()
 
     var body: some View {
         NavigationSplitView {
