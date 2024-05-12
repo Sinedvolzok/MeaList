@@ -8,8 +8,8 @@
 import Foundation
 
 protocol MLSection: Identifiable {
-    static var sectionToScroll: String { get }
     var title: String { get }
+    static func getCurrentWeek(for date: Date) -> String
 }
 
 protocol MLCell: Identifiable {
@@ -23,18 +23,19 @@ struct MLWeek {
     var date: Date
 }
 extension MLWeek: MLSection {
-    static let sectionToScroll: String = {
-        Date.now.weekId
-    }()
-    static let sections: [String] = {
-        Date.getWeeksRange()
-    }()
-    var title: String { date.week }
+    var title: String { "WEEK " + date.week }
     var id: String { date.weekId }
+    static func getCurrentWeek(for date: Date = .now) -> String {
+        date.weekId
+    }
+    static func getWeeks(for date: Date = .now) -> [String] {
+        Date.getWeeksRange(from: date)
+    }
 }
 extension MLWeek {
-    var days: [MLDay] {
-        let dates = Date.getDatesRange().filter{$0.weekId == date.weekId}
+    func getWeekdays(from date: Date = .now) -> [MLDay] {
+        let dates = Date.getDatesRange(from: date)
+            .filter{$0.weekId == self.id}
         return dates.map(MLDay.init)
     }
 }
