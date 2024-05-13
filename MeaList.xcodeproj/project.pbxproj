@@ -20,6 +20,9 @@
 		531DDB002BEA0C72003004DB /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 531DDAFF2BEA0C72003004DB /* Date+.swift */; };
 		531DDB022BEABBFD003004DB /* DateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 531DDB012BEABBFD003004DB /* DateTests.swift */; };
 		531DDB042BF0C36E003004DB /* MLWeekTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 531DDB032BF0C36E003004DB /* MLWeekTests.swift */; };
+		531DDB062BF1EAB2003004DB /* MLWeek.swift in Sources */ = {isa = PBXBuildFile; fileRef = 531DDB052BF1EAB2003004DB /* MLWeek.swift */; };
+		531DDB082BF1EB19003004DB /* MLDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 531DDB072BF1EB19003004DB /* MLDay.swift */; };
+		531DDB0A2BF1EB89003004DB /* MLDateTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 531DDB092BF1EB89003004DB /* MLDateTest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +59,9 @@
 		531DDAFF2BEA0C72003004DB /* Date+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
 		531DDB012BEABBFD003004DB /* DateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTests.swift; sourceTree = "<group>"; };
 		531DDB032BF0C36E003004DB /* MLWeekTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MLWeekTests.swift; sourceTree = "<group>"; };
+		531DDB052BF1EAB2003004DB /* MLWeek.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MLWeek.swift; sourceTree = "<group>"; };
+		531DDB072BF1EB19003004DB /* MLDay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MLDay.swift; sourceTree = "<group>"; };
+		531DDB092BF1EB89003004DB /* MLDateTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MLDateTest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +119,8 @@
 				531DDAD32BE4C175003004DB /* Assets.xcassets */,
 				531DDAD52BE4C175003004DB /* Preview Content */,
 				531DDAFD2BE8FAD3003004DB /* MLContainer.swift */,
+				531DDB072BF1EB19003004DB /* MLDay.swift */,
+				531DDB052BF1EAB2003004DB /* MLWeek.swift */,
 				531DDAFF2BEA0C72003004DB /* Date+.swift */,
 			);
 			path = MeaList;
@@ -132,6 +140,7 @@
 				531DDAE02BE4C176003004DB /* MeaListTests.swift */,
 				531DDB012BEABBFD003004DB /* DateTests.swift */,
 				531DDB032BF0C36E003004DB /* MLWeekTests.swift */,
+				531DDB092BF1EB89003004DB /* MLDateTest.swift */,
 			);
 			path = MeaListTests;
 			sourceTree = "<group>";
@@ -276,7 +285,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				531DDB062BF1EAB2003004DB /* MLWeek.swift in Sources */,
 				531DDAFE2BE8FAD3003004DB /* MLContainer.swift in Sources */,
+				531DDB082BF1EB19003004DB /* MLDay.swift in Sources */,
 				531DDAD02BE4C173003004DB /* ContentView.swift in Sources */,
 				531DDB002BEA0C72003004DB /* Date+.swift in Sources */,
 				531DDAD22BE4C173003004DB /* Item.swift in Sources */,
@@ -290,6 +301,7 @@
 			files = (
 				531DDAE12BE4C176003004DB /* MeaListTests.swift in Sources */,
 				531DDB042BF0C36E003004DB /* MLWeekTests.swift in Sources */,
+				531DDB0A2BF1EB89003004DB /* MLDateTest.swift in Sources */,
 				531DDB022BEABBFD003004DB /* DateTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
