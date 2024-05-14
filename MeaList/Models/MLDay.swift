@@ -15,3 +15,12 @@ extension MLDay: MLDate {
     var title: String { date.day }
     var id: String { date.id }
 }
+
+extension MLDay {
+    func getMeals(from data: [MLMeal]) -> [MLMeal] {
+        let meals = data.filter{
+            $0.dateId == self.date.id
+        }
+        return meals
+    }
+}

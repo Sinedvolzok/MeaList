@@ -37,6 +37,17 @@ final class MLDateTest: XCTestCase {
         let sut = MLDay(date: mockDate).date.id
         XCTAssertEqual("20_05_10", sut)
     }
+    
+    func testMealGotten() throws {
+        let day = MLDay(date: mockDate)
+        let meals = day.getMeals(from: MLMeal.mokedData)
+        let mealsStrings = meals.map(\.type.rawValue)
+        let testMeals = ["dinner","breakfast","lunch"]
+        XCTAssertEqual(testMeals.first!, meals.first!.type.rawValue)
+        XCTAssertEqual(testMeals.last!, meals.last!.type.rawValue)
+        XCTAssertEqual(testMeals.count, meals.count)
+        XCTAssertEqual(testMeals, mealsStrings)
+    }
 
     func testPerformanceExample() throws {
         // This is an example of a performance test case.

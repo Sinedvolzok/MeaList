@@ -23,6 +23,7 @@
 		531DDB062BF1EAB2003004DB /* MLWeek.swift in Sources */ = {isa = PBXBuildFile; fileRef = 531DDB052BF1EAB2003004DB /* MLWeek.swift */; };
 		531DDB082BF1EB19003004DB /* MLDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 531DDB072BF1EB19003004DB /* MLDay.swift */; };
 		531DDB0A2BF1EB89003004DB /* MLDateTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 531DDB092BF1EB89003004DB /* MLDateTest.swift */; };
+		531DDB0D2BF1EF2A003004DB /* MokedData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 531DDB0C2BF1EF29003004DB /* MokedData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +63,7 @@
 		531DDB052BF1EAB2003004DB /* MLWeek.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MLWeek.swift; sourceTree = "<group>"; };
 		531DDB072BF1EB19003004DB /* MLDay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MLDay.swift; sourceTree = "<group>"; };
 		531DDB092BF1EB89003004DB /* MLDateTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MLDateTest.swift; sourceTree = "<group>"; };
+		531DDB0C2BF1EF29003004DB /* MokedData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MokedData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,15 +115,12 @@
 		531DDACC2BE4C173003004DB /* MeaList */ = {
 			isa = PBXGroup;
 			children = (
+				531DDB0B2BF1EEC4003004DB /* Models */,
 				531DDACD2BE4C173003004DB /* MeaListApp.swift */,
 				531DDACF2BE4C173003004DB /* ContentView.swift */,
 				531DDAD12BE4C173003004DB /* Item.swift */,
 				531DDAD32BE4C175003004DB /* Assets.xcassets */,
 				531DDAD52BE4C175003004DB /* Preview Content */,
-				531DDAFD2BE8FAD3003004DB /* MLContainer.swift */,
-				531DDB072BF1EB19003004DB /* MLDay.swift */,
-				531DDB052BF1EAB2003004DB /* MLWeek.swift */,
-				531DDAFF2BEA0C72003004DB /* Date+.swift */,
 			);
 			path = MeaList;
 			sourceTree = "<group>";
@@ -152,6 +151,18 @@
 				531DDAEC2BE4C176003004DB /* MeaListUITestsLaunchTests.swift */,
 			);
 			path = MeaListUITests;
+			sourceTree = "<group>";
+		};
+		531DDB0B2BF1EEC4003004DB /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				531DDAFD2BE8FAD3003004DB /* MLContainer.swift */,
+				531DDB072BF1EB19003004DB /* MLDay.swift */,
+				531DDB052BF1EAB2003004DB /* MLWeek.swift */,
+				531DDAFF2BEA0C72003004DB /* Date+.swift */,
+				531DDB0C2BF1EF29003004DB /* MokedData.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -289,6 +300,7 @@
 				531DDAFE2BE8FAD3003004DB /* MLContainer.swift in Sources */,
 				531DDB082BF1EB19003004DB /* MLDay.swift in Sources */,
 				531DDAD02BE4C173003004DB /* ContentView.swift in Sources */,
+				531DDB0D2BF1EF2A003004DB /* MokedData.swift in Sources */,
 				531DDB002BEA0C72003004DB /* Date+.swift in Sources */,
 				531DDAD22BE4C173003004DB /* Item.swift in Sources */,
 				531DDACE2BE4C173003004DB /* MeaListApp.swift in Sources */,
