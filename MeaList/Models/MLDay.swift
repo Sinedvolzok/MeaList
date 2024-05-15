@@ -18,9 +18,6 @@ extension MLDay: MLDate {
 
 extension MLDay {
     func getMeals(from data: [MLMeal]) -> [MLMeal] {
-        let meals = data.filter{
-            $0.dateId == self.date.id
-        }
-        return meals
+        data.filter{ $0.dateId == date.id }
     }
 }

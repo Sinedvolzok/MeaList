@@ -21,17 +21,15 @@ protocol MLDate: MLCell {
     var date: Date { get }
 }
 
-struct MLMeal: Identifiable  {
-    let id = UUID()
-    let dateId: String
-    let type: MLMealType
-    //let dishes: [DishData]
-}
-enum MLMealType : String, CaseIterable{
-    case breakfast
-    case lunch
-    case dinner
-    case elevenses
+struct MLDish {
+    let id: UUID
+    let mealId: UUID
+    let title: String
+    init(id: UUID = UUID(), mealId: UUID, title: String) {
+        self.id = id
+        self.mealId = mealId
+        self.title = title
+    }
 }
 
 

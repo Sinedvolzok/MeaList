@@ -40,7 +40,7 @@ final class MLDateTest: XCTestCase {
     
     func testMealGotten() throws {
         let day = MLDay(date: mockDate)
-        let meals = day.getMeals(from: MLMeal.mokedData)
+        let meals = day.getMeals(from: MLMeal.mockedData)
         let mealsStrings = meals.map(\.type.rawValue)
         let testMeals = ["dinner","breakfast","lunch"]
         XCTAssertEqual(testMeals.first!, meals.first!.type.rawValue)
