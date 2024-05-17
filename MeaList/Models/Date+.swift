@@ -9,9 +9,9 @@ import Foundation
 
 extension Date {
     ///Return range of formatted weeks from THURSDAY with 2 years before and 1 yaer after current date
-    static func getWeeksRange(from date: Date = .now) -> [String] {
-        let weekIds = getDatesRange(from: date).filter{$0.weekday == "THURSDAY"}.map(\.weekId)
-        return weekIds
+    static func getWeeksRange(from date: Date = .now) -> [Date] {
+        let thursdays = getDatesRange(from: date).filter{$0.weekday == "THURSDAY"}
+        return thursdays
     }
     ///Return range of dates with 2 years before and 1 yaer after current date
     static func getDatesRange(from date: Date = .now) -> [Date] {

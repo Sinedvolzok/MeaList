@@ -9,22 +9,30 @@ import XCTest
 @testable import MeaList
 
 final class MLMealTests: XCTestCase {
+    var meal: MLMeal!
     
-    
-
     override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        try super.setUpWithError()
+        let id = UUID(uuidString: "75F2330F-966F-49BA-B5C8-C860E21F6F9A")!
+        meal = MLMeal(id: id, dateId: "20_05_10", type: .breakfast)
     }
 
     override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+        try super.tearDownWithError()
+        meal = nil
     }
 
     func testDishesGotten() throws {
-        let id = UUID(uuidString: "75F2330F-966F-49BA-B5C8-C860E21F6F9A")!
-        let meal = MLMeal(id: id, dateId: "20_05_10", type: .breakfast)
-        let sut = meal.getDishes(from: MLDish.mockedData).first!
-        XCTAssertEqual("Broccoli with veal", sut.title)
+        let testMeals = [
+            "Broccoli With Veal",
+            "Avocado Sanwiches",
+            "Vegetable Stew",
+        ]
+        let sut = meal.getDishes(from: MLDish.mockedData)
+        XCTAssertEqual(testMeals.first, sut.first?.title)
+        XCTAssertEqual(testMeals.last, sut.last?.title)
+        XCTAssertEqual(testMeals.count, sut.count)
+        XCTAssertEqual(testMeals, sut.map(\.title))
     }
 
     func testPerformanceExample() throws {

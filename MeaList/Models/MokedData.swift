@@ -18,11 +18,6 @@ extension MLMeal {
         MLMeal(dateId: "20_05_13", type: .elevenses),
         MLMeal(dateId: "20_05_13", type: .elevenses),
     ]
-    
-    static let mok: MLMeal = {
-        let meal = MLMeal(id: UUID() ,dateId: "20_05_10", type: .dinner)
-        return meal
-    }()
 }
 
 extension MLDish {
@@ -36,7 +31,17 @@ extension MLDish {
             mealId: UUID(
                 uuidString:
                     "75F2330F-966F-49BA-B5C8-C860E21F6F9A")!,
-            title: "Broccoli with veal"),
+            title: "Broccoli With Veal"),
+        MLDish(
+            mealId: UUID(
+                uuidString:
+                    "75F2330F-966F-49BA-B5C8-C860E21F6F9A")!,
+            title: "Avocado Sanwiches"),
+        MLDish(
+            mealId: UUID(
+                uuidString:
+                    "75F2330F-966F-49BA-B5C8-C860E21F6F9A")!,
+            title: "Vegetable Stew"),
         MLDish(
             mealId: UUID(
                 uuidString:

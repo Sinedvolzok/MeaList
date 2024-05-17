@@ -26,6 +26,8 @@
 		531DDB0D2BF1EF2A003004DB /* MokedData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 531DDB0C2BF1EF29003004DB /* MokedData.swift */; };
 		531DDB0F2BF344CB003004DB /* MLMeal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 531DDB0E2BF344CB003004DB /* MLMeal.swift */; };
 		531DDB112BF3453B003004DB /* MLMealTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 531DDB102BF3453B003004DB /* MLMealTests.swift */; };
+		53D55AEB2BF4DA5400E3DC4F /* MLDish.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D55AEA2BF4DA5400E3DC4F /* MLDish.swift */; };
+		53D55AED2BF7329F00E3DC4F /* MLCalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D55AEC2BF7329F00E3DC4F /* MLCalendarView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +70,8 @@
 		531DDB0C2BF1EF29003004DB /* MokedData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MokedData.swift; sourceTree = "<group>"; };
 		531DDB0E2BF344CB003004DB /* MLMeal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MLMeal.swift; sourceTree = "<group>"; };
 		531DDB102BF3453B003004DB /* MLMealTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MLMealTests.swift; sourceTree = "<group>"; };
+		53D55AEA2BF4DA5400E3DC4F /* MLDish.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MLDish.swift; sourceTree = "<group>"; };
+		53D55AEC2BF7329F00E3DC4F /* MLCalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MLCalendarView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +126,7 @@
 				531DDB0B2BF1EEC4003004DB /* Models */,
 				531DDACD2BE4C173003004DB /* MeaListApp.swift */,
 				531DDACF2BE4C173003004DB /* ContentView.swift */,
+				53D55AEC2BF7329F00E3DC4F /* MLCalendarView.swift */,
 				531DDAD12BE4C173003004DB /* Item.swift */,
 				531DDAD32BE4C175003004DB /* Assets.xcassets */,
 				531DDAD52BE4C175003004DB /* Preview Content */,
@@ -165,8 +170,9 @@
 				531DDB072BF1EB19003004DB /* MLDay.swift */,
 				531DDB052BF1EAB2003004DB /* MLWeek.swift */,
 				531DDAFF2BEA0C72003004DB /* Date+.swift */,
-				531DDB0C2BF1EF29003004DB /* MokedData.swift */,
 				531DDB0E2BF344CB003004DB /* MLMeal.swift */,
+				53D55AEA2BF4DA5400E3DC4F /* MLDish.swift */,
+				531DDB0C2BF1EF29003004DB /* MokedData.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -310,6 +316,8 @@
 				531DDB002BEA0C72003004DB /* Date+.swift in Sources */,
 				531DDAD22BE4C173003004DB /* Item.swift in Sources */,
 				531DDB0F2BF344CB003004DB /* MLMeal.swift in Sources */,
+				53D55AED2BF7329F00E3DC4F /* MLCalendarView.swift in Sources */,
+				53D55AEB2BF4DA5400E3DC4F /* MLDish.swift in Sources */,
 				531DDACE2BE4C173003004DB /* MeaListApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

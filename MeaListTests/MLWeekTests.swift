@@ -77,7 +77,7 @@ final class MLWeekTests: XCTestCase {
             guard let weekNum = Int(date.week) else { return }
             mockWeeks.append(weekNum<10 ? "\(date.year)0\(date.week)" : "\(date.year)\(date.week)")
         }
-        let sut = MLWeek.getWeeks(for: mockNow)
+        let sut = MLWeek.getWeeks(for: mockNow).map(\.id)
         XCTAssertEqual(mockWeeks.first, sut.first)
         XCTAssertEqual(mockWeeks.last, sut.last)
         XCTAssertEqual(mockWeeks.count, sut.count)

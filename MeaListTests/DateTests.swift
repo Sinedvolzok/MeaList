@@ -85,7 +85,7 @@ final class DateTests: XCTestCase {
             guard let weekNum = Int(date.week) else { return }
             mockWeeks.append(weekNum<10 ? "\(date.year)0\(date.week)" : "\(date.year)\(date.week)")
         }
-        let sut = Date.getWeeksRange(from: mockThursday)
+        let sut = Date.getWeeksRange(from: mockThursday).map(\.weekId)
         XCTAssertEqual(mockWeeks.first, sut.first)
         XCTAssertEqual(mockWeeks.last, sut.last)
         XCTAssertEqual(mockWeeks.count, sut.count)

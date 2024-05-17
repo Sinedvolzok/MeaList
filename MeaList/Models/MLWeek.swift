@@ -10,14 +10,14 @@ import Foundation
 struct MLWeek {
     var date: Date
 }
-extension MLWeek: MLSection {
+extension MLWeek: MLSection, Identifiable {
     var title: String { "WEEK " + date.week }
     var id: String { date.weekId }
     static func getCurrentWeek(for date: Date = .now) -> String {
         date.weekId
     }
-    static func getWeeks(for date: Date = .now) -> [String] {
-        Date.getWeeksRange(from: date)
+    static func getWeeks(for date: Date = .now) -> [MLWeek] {
+        Date.getWeeksRange(from: date).map(MLWeek.init)
     }
 }
 extension MLWeek {
