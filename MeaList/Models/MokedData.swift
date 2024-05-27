@@ -18,6 +18,16 @@ extension MLMeal {
         MLMeal(dateId: "20_05_13", type: .elevenses),
         MLMeal(dateId: "20_05_13", type: .elevenses),
     ]
+    static let mockedData2: [MLMeal] = [
+        MLMeal(dateId: "22_05_23", type: .dinner),
+        MLMeal(dateId: "22_06_10", type: .breakfast),
+        MLMeal(dateId: "22_06_10", type: .lunch),
+        MLMeal(dateId: "24_05_20", type: .lunch),
+        MLMeal(dateId: "24_05_20", type: .dinner),
+        MLMeal(dateId: "22_06_12", type: .breakfast),
+        MLMeal(dateId: "22_06_13", type: .elevenses),
+        MLMeal(dateId: "22_06_13", type: .elevenses),
+    ]
 }
 
 extension MLDish {

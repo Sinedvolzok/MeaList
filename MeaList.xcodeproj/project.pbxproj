@@ -28,6 +28,7 @@
 		531DDB112BF3453B003004DB /* MLMealTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 531DDB102BF3453B003004DB /* MLMealTests.swift */; };
 		53D55AEB2BF4DA5400E3DC4F /* MLDish.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D55AEA2BF4DA5400E3DC4F /* MLDish.swift */; };
 		53D55AED2BF7329F00E3DC4F /* MLCalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D55AEC2BF7329F00E3DC4F /* MLCalendarView.swift */; };
+		53D55AEF2BFC7C2E00E3DC4F /* GroupBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D55AEE2BFC7C2E00E3DC4F /* GroupBoxView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,6 +73,7 @@
 		531DDB102BF3453B003004DB /* MLMealTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MLMealTests.swift; sourceTree = "<group>"; };
 		53D55AEA2BF4DA5400E3DC4F /* MLDish.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MLDish.swift; sourceTree = "<group>"; };
 		53D55AEC2BF7329F00E3DC4F /* MLCalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MLCalendarView.swift; sourceTree = "<group>"; };
+		53D55AEE2BFC7C2E00E3DC4F /* GroupBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupBoxView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -173,6 +175,7 @@
 				531DDB0E2BF344CB003004DB /* MLMeal.swift */,
 				53D55AEA2BF4DA5400E3DC4F /* MLDish.swift */,
 				531DDB0C2BF1EF29003004DB /* MokedData.swift */,
+				53D55AEE2BFC7C2E00E3DC4F /* GroupBoxView.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -310,6 +313,7 @@
 			files = (
 				531DDB062BF1EAB2003004DB /* MLWeek.swift in Sources */,
 				531DDAFE2BE8FAD3003004DB /* MLContainer.swift in Sources */,
+				53D55AEF2BFC7C2E00E3DC4F /* GroupBoxView.swift in Sources */,
 				531DDB082BF1EB19003004DB /* MLDay.swift in Sources */,
 				531DDAD02BE4C173003004DB /* ContentView.swift in Sources */,
 				531DDB0D2BF1EF2A003004DB /* MokedData.swift in Sources */,

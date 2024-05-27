@@ -17,15 +17,43 @@ struct MLMeal: Identifiable  {
         self.type = type
     }
 }
-enum MLMealType : String, CaseIterable{
+
+extension MLMeal {
+    func getDishes(from data: [MLDish]) -> [MLDish] {
+        data.filter{ $0.mealId == id }
+    }
+}
+
+extension MLMeal: Equatable {
+    static func ==(lhs: MLMeal, rhs: MLMeal) -> Bool {
+        lhs.id == rhs.id
+    }
+}
+
+enum MLMealType: String {
     case breakfast
     case lunch
     case dinner
     case elevenses
 }
 
-extension MLMeal {
-    func getDishes(from data: [MLDish]) -> [MLDish] {
-        data.filter{ $0.mealId == id }
+extension MLMealType: Identifiable, CaseIterable {
+    var id: String {
+        self.rawValue
+    }
+}
+
+extension MLMealType {
+    var image: String {
+        switch self {
+        case .breakfast:
+            "sun.dust.fill"
+        case .lunch:
+            "sun.max.fill"
+        case .dinner:
+            "sun.haze"
+        case .elevenses:
+            "carrot"
+        }
     }
 }
