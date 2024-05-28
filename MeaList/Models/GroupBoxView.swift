@@ -8,33 +8,48 @@
 import SwiftUI
 
 struct GroupBoxView: View {
+    @State private var items: [Item] = []
     @State var weekday: String = "WEDNESDAY"
     @State var day: String = "MAY 15"
     @State private var isAddMealTapped: Bool = false
+    @State private var selectedItem: MLDay?
+    @State private var isSelected: Bool?
+    
     
     var body: some View {
         ScrollView {
             LazyVGrid(columns: [.init()],spacing: 20) {
-                ForEach(0..<50) { _ in
-                    GroupBox(label: DateLabel(weekday: weekday, day: day)) {
-                        GroupBox(label: Text("breakfast")) {
-                            Text("Your text rate is 9 BPM. YO YOYO")
-                            Divider()
-                            Text("Your text rate is 9 BPM.")
-                        }.groupBoxStyle(MealGroupBoxStyle())
-                        GroupBox(label: Text("dinner")) {
-                            Text("Your text rate is 9 BPM. YO YOYO")
-                            Divider()
-                            Text("Your text rate is 9 BPM.")
-                        }.groupBoxStyle(MealGroupBoxStyle())
-                        if isAddMealTapped {
-                            AddingMealView(tappedCancel: $isAddMealTapped)
-                        } else {
-                            AddMealButton(tapped: $isAddMealTapped)
+                //ForEach(0..<2) { _ in
+                //    GroupBox(label: DateLabel(weekday: weekday, day: day)) {
+                //        GroupBox(label: Text("breakfast")) {
+                //            Text("Your text rate is 9 BPM. YO YOYO")
+                //            Divider()
+                //            Text("Your text rate is 9 BPM.")
+                //        }.groupBoxStyle(MealGroupBoxStyle())
+                //        GroupBox(label: Text("dinner")) {
+                //            Text("Your text rate is 9 BPM. YO YOYO")
+                //            Divider()
+                //            Text("Your text rate is 9 BPM.")
+                //        }.groupBoxStyle(MealGroupBoxStyle())
+                //        if isAddMealTapped {
+                //            AddingMealView(tappedCancel: $isAddMealTapped)
+                //        } else {
+                //            AddMealButton(tapped: $isAddMealTapped)
+                //        }
+                //    }
+                //    .groupBoxStyle(DayGroupBoxStyle())
+                //}
+                GroupBox(label: DateLabel(weekday: weekday, day: day)) {
+                    if isAddMealTapped {
+                        AddingMealView(items: $items, tappedCancel: $isAddMealTapped)
+                    } else {
+                        Button {
+                            isAddMealTapped = true
+                        } label: {
+                            MLMealPlaceholder()
                         }
                     }
-                    .groupBoxStyle(DayGroupBoxStyle())
-                }
+                }.groupBoxStyle(DayGroupBoxStyle())
             }
         }.safeAreaPadding()
     }
@@ -57,14 +72,10 @@ struct AddMealButton: View {
 }
 
 struct AddingMealView: View {
+    @Binding var items: [Item]
+    @Binding var tappedCancel: Bool
     @State private var dishName: String = ""
     @State private var selectedMealType: MLMealType = .dinner
-    @Binding var tappedCancel: Bool
-    
-   // init() {
-   //     UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor: //UIColor.label], for: .selected)
-   //     UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor: //UIColor.secondaryLabel], for: .normal)
-   // }
     
     var body: some View {
         GroupBox(label: Text("Adding meal...").padding(.top)) {
@@ -100,13 +111,19 @@ struct AddingMealView: View {
                             .cornerRadius(16)
                     }
                     Spacer()
-                    Label("Add meal", systemImage: "plus")
-                        .font(.headline)
-                        .padding(10)
-                        .foregroundColor(Color(
-                            UIColor.tertiarySystemBackground))
-                        .background(.primary)
-                        .cornerRadius(16)
+                    Button {
+                        items.append(Item(timestamp: .now))
+                        print(items.count)
+                        tappedCancel = false
+                    } label: {
+                        Label("Add meal", systemImage: "plus")
+                            .font(.headline)
+                            .padding(10)
+                            .foregroundColor(Color(
+                                UIColor.tertiarySystemBackground))
+                            .background(.primary)
+                            .cornerRadius(16)
+                    }
                 }.padding(.top)
             }
         }.groupBoxStyle(MealGroupBoxStyle())
