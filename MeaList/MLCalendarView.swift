@@ -11,23 +11,33 @@ struct MLCalendarView: View {
     let weeks: [MLWeek] = MLWeek.getWeeks()
     let columns = [GridItem(.adaptive(minimum: 320))]
     let currentWeek: String = MLWeek.getCurrentWeek()
+    
+    @State private var items: [Item] = []
+    @State private var isAddMealTapped: Bool = false
+    @State private var selectedDayId : String?
+    
     var body: some View {
         ScrollViewReader { proxy in
             ScrollView {
                 LazyVGrid(columns: columns, alignment: .leading) {
                     ForEach(weeks) { week in
-                        Section(header:
-                            Text(week.title)
-                                .font(.title)
-                                .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
-                                .padding()
-                                .padding(.top, 60)) {
+                        Section(header: TitleView(week: week)) {
                             let days = week.getWeekdays()
                             ForEach(days) { day in
                                 let meals = day.getMeals(from: MLMeal.mockedData2)
                                 GroupBox(label: DateLabel(weekday: day.date.weekday, day: day.title)) {
                                     if meals.isEmpty {
-                                        MLMealPlaceholder()
+                                        if isAddMealTapped && selectedDayId == day.id {
+                                            AddingMealView(items: $items, isLeaveView: $isAddMealTapped, selectedId: $selectedDayId)
+                                        } else {
+                                            Button {
+                                                let isSelected = selectedDayId != day.id
+                                                selectedDayId = isSelected ? day.id : nil
+                                                isAddMealTapped = true
+                                            } label: {
+                                                MLMealPlaceholder()
+                                            }
+                                        }
                                     } else {
                                         ForEach(meals) { meal in
                                             MLMealView(meal: meal)
@@ -66,5 +76,16 @@ struct MLMealView: View {
                 }
             }
         }.groupBoxStyle(MealGroupBoxStyle())
+    }
+}
+
+struct TitleView: View {
+    var week: MLWeek
+    var body: some View {
+        Text(week.title)
+            .font(.title)
+            .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+            .padding()
+            .padding(.top, 60)
     }
 }

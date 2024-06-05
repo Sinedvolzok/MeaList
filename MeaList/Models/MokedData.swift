@@ -24,9 +24,9 @@ extension MLMeal {
         MLMeal(dateId: "22_06_10", type: .lunch),
         MLMeal(dateId: "24_05_20", type: .lunch),
         MLMeal(dateId: "24_05_20", type: .dinner),
-        MLMeal(dateId: "22_06_12", type: .breakfast),
-        MLMeal(dateId: "22_06_13", type: .elevenses),
-        MLMeal(dateId: "22_06_13", type: .elevenses),
+        MLMeal(dateId: "22_06_05", type: .breakfast),
+        MLMeal(dateId: "22_06_05", type: .elevenses),
+        MLMeal(dateId: "22_06_05", type: .elevenses),
     ]
 }
 

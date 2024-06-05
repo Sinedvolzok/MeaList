@@ -12,43 +12,27 @@ struct GroupBoxView: View {
     @State var weekday: String = "WEDNESDAY"
     @State var day: String = "MAY 15"
     @State private var isAddMealTapped: Bool = false
-    @State private var selectedItem: MLDay?
+    @State private var selectedDayId: String?
     @State private var isSelected: Bool?
+    @State private var selectedId: String?
     
     
     var body: some View {
         ScrollView {
             LazyVGrid(columns: [.init()],spacing: 20) {
-                //ForEach(0..<2) { _ in
-                //    GroupBox(label: DateLabel(weekday: weekday, day: day)) {
-                //        GroupBox(label: Text("breakfast")) {
-                //            Text("Your text rate is 9 BPM. YO YOYO")
-                //            Divider()
-                //            Text("Your text rate is 9 BPM.")
-                //        }.groupBoxStyle(MealGroupBoxStyle())
-                //        GroupBox(label: Text("dinner")) {
-                //            Text("Your text rate is 9 BPM. YO YOYO")
-                //            Divider()
-                //            Text("Your text rate is 9 BPM.")
-                //        }.groupBoxStyle(MealGroupBoxStyle())
-                //        if isAddMealTapped {
-                //            AddingMealView(tappedCancel: $isAddMealTapped)
-                //        } else {
-                //            AddMealButton(tapped: $isAddMealTapped)
-                //        }
-                //    }
-                //    .groupBoxStyle(DayGroupBoxStyle())
-                //}
                 GroupBox(label: DateLabel(weekday: weekday, day: day)) {
                     if isAddMealTapped {
-                        AddingMealView(items: $items, tappedCancel: $isAddMealTapped)
+                        AddingMealView(items: $items, isLeaveView: $isAddMealTapped, selectedId: $selectedId)
                     } else {
                         Button {
+                            let isSelected = selectedId != day
+                            selectedId = isSelected ? day : nil
                             isAddMealTapped = true
                         } label: {
                             MLMealPlaceholder()
                         }
                     }
+                    
                 }.groupBoxStyle(DayGroupBoxStyle())
             }
         }.safeAreaPadding()
@@ -73,7 +57,8 @@ struct AddMealButton: View {
 
 struct AddingMealView: View {
     @Binding var items: [Item]
-    @Binding var tappedCancel: Bool
+    @Binding var isLeaveView: Bool
+    @Binding var selectedId : String?
     @State private var dishName: String = ""
     @State private var selectedMealType: MLMealType = .dinner
     
@@ -101,7 +86,7 @@ struct AddingMealView: View {
                 // MARK: Buttons
                 HStack {
                     Button {
-                        tappedCancel = false
+                        isLeaveView = false
                     } label: {
                         Text("Cancel")
                             .padding(12)
@@ -114,7 +99,7 @@ struct AddingMealView: View {
                     Button {
                         items.append(Item(timestamp: .now))
                         print(items.count)
-                        tappedCancel = false
+                        isLeaveView = false
                     } label: {
                         Label("Add meal", systemImage: "plus")
                             .font(.headline)
@@ -126,7 +111,7 @@ struct AddingMealView: View {
                     }
                 }.padding(.top)
             }
-        }.groupBoxStyle(MealGroupBoxStyle())
+        }.groupBoxStyle(.meal)
     }
 }
 
@@ -165,6 +150,15 @@ struct MLMealPlaceholder: View {
 //#Preview {
 //    DateLabel()
 //}
+// MARK: - Styles
+
+extension GroupBoxStyle where Self == MealGroupBoxStyle {
+    static var meal: Self { Self() }
+}
+
+extension GroupBoxStyle where Self == DayGroupBoxStyle {
+    static var day: Self { Self() }
+}
 
 struct MealGroupBoxStyle: GroupBoxStyle {
     func makeBody(configuration: Configuration) -> some View {
