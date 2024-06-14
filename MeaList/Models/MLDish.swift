@@ -7,13 +7,11 @@
 
 import Foundation
 
-struct MLDish {
+struct MLDish: Identifiable {
     let id: UUID
-    let mealId: UUID
     let title: String
-    init(id: UUID = UUID(), mealId: UUID = UUID(), title: String) {
+    init(id: UUID = UUID(), title: String) {
         self.id = id
-        self.mealId = mealId
         self.title = title
     }
 }

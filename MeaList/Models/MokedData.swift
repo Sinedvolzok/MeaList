@@ -9,53 +9,33 @@ import Foundation
 
 extension MLMeal {
     static let mockedData: [MLMeal] = [
-        MLMeal(dateId: "20_05_10", type: .dinner),
-        MLMeal(dateId: "20_05_10", type: .breakfast),
-        MLMeal(dateId: "20_05_10", type: .lunch),
-        MLMeal(dateId: "20_05_11", type: .lunch),
-        MLMeal(dateId: "20_05_11", type: .dinner),
-        MLMeal(dateId: "20_05_12", type: .breakfast),
-        MLMeal(dateId: "20_05_13", type: .elevenses),
-        MLMeal(dateId: "20_05_13", type: .elevenses),
+        MLMeal(dateId: "20_05_10", type: .dinner, dishes: MLDish.mockedData),
+        MLMeal(dateId: "20_05_10", type: .breakfast, dishes: MLDish.mockedData),
+        MLMeal(dateId: "20_05_10", type: .lunch, dishes: MLDish.mockedData),
+        MLMeal(dateId: "20_05_11", type: .lunch, dishes: MLDish.mockedData),
+        MLMeal(dateId: "20_05_11", type: .dinner, dishes: MLDish.mockedData),
+        MLMeal(dateId: "20_05_12", type: .breakfast, dishes: MLDish.mockedData),
+        MLMeal(dateId: "20_05_13", type: .elevenses, dishes: MLDish.mockedData),
+        MLMeal(dateId: "20_05_13", type: .elevenses, dishes: MLDish.mockedData),
     ]
     static let mockedData2: [MLMeal] = [
-        MLMeal(dateId: "22_05_23", type: .dinner),
-        MLMeal(dateId: "22_06_10", type: .breakfast),
-        MLMeal(dateId: "22_06_10", type: .lunch),
-        MLMeal(dateId: "24_05_20", type: .lunch),
-        MLMeal(dateId: "24_05_20", type: .dinner),
-        MLMeal(dateId: "22_06_05", type: .breakfast),
-        MLMeal(dateId: "22_06_05", type: .elevenses),
-        MLMeal(dateId: "22_06_05", type: .elevenses),
+        MLMeal(dateId: "22_05_23", type: .dinner, dishes: MLDish.mockedData),
+        MLMeal(dateId: "22_06_10", type: .breakfast, dishes: MLDish.mockedData),
+        MLMeal(dateId: "22_06_10", type: .lunch, dishes: MLDish.mockedData),
+        MLMeal(dateId: "24_05_20", type: .lunch, dishes: MLDish.mockedData),
+        MLMeal(dateId: "24_05_20", type: .dinner, dishes: MLDish.mockedData),
+        MLMeal(dateId: "22_06_05", type: .breakfast, dishes: MLDish.mockedData),
+        MLMeal(dateId: "22_06_05", type: .elevenses, dishes: MLDish.mockedData),
+        MLMeal(dateId: "22_06_05", type: .elevenses, dishes: MLDish.mockedData),
     ]
 }
 
 extension MLDish {
     static let mockedData: [MLDish] = [
-        MLDish(
-            mealId: UUID(
-                uuidString:
-                    "AC5069FE-15D8-40F0-8BC5-CC2FD0FCE4E6")!,
-            title: "Palack Panir"),
-        MLDish(
-            mealId: UUID(
-                uuidString:
-                    "75F2330F-966F-49BA-B5C8-C860E21F6F9A")!,
-            title: "Broccoli With Veal"),
-        MLDish(
-            mealId: UUID(
-                uuidString:
-                    "75F2330F-966F-49BA-B5C8-C860E21F6F9A")!,
-            title: "Avocado Sanwiches"),
-        MLDish(
-            mealId: UUID(
-                uuidString:
-                    "75F2330F-966F-49BA-B5C8-C860E21F6F9A")!,
-            title: "Vegetable Stew"),
-        MLDish(
-            mealId: UUID(
-                uuidString:
-                    "17EC96AA-A6F9-4174-8D70-AE1159BC672D")!,
-            title: "Pasta Balanese"),
+        MLDish(title: "Palack Panir"),
+        MLDish(title: "Broccoli With Veal"),
+        MLDish(title: "Avocado Sanwiches"),
+        MLDish(title: "Vegetable Stew"),
+        MLDish(title: "Pasta Balanese"),
     ]
 }

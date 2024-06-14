@@ -68,7 +68,7 @@ extension Date: Describable, Identifiable {
     
     public var id: String {
         let formatter = DateFormatter()
-        formatter.dateFormat = "YY_MM_dd"
+        formatter.dateFormat = "yyyy-MM-dd"
         let day = formatter.string(from: self)
         return day
     }

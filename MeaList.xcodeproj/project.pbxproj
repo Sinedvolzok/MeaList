@@ -29,6 +29,7 @@
 		53D55AEB2BF4DA5400E3DC4F /* MLDish.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D55AEA2BF4DA5400E3DC4F /* MLDish.swift */; };
 		53D55AED2BF7329F00E3DC4F /* MLCalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D55AEC2BF7329F00E3DC4F /* MLCalendarView.swift */; };
 		53D55AEF2BFC7C2E00E3DC4F /* GroupBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D55AEE2BFC7C2E00E3DC4F /* GroupBoxView.swift */; };
+		53F571C92C1C5CF100E1511A /* MLDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53F571C82C1C5CF100E1511A /* MLDateFormatter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,6 +75,7 @@
 		53D55AEA2BF4DA5400E3DC4F /* MLDish.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MLDish.swift; sourceTree = "<group>"; };
 		53D55AEC2BF7329F00E3DC4F /* MLCalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MLCalendarView.swift; sourceTree = "<group>"; };
 		53D55AEE2BFC7C2E00E3DC4F /* GroupBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupBoxView.swift; sourceTree = "<group>"; };
+		53F571C82C1C5CF100E1511A /* MLDateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MLDateFormatter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,6 +128,7 @@
 			isa = PBXGroup;
 			children = (
 				531DDB0B2BF1EEC4003004DB /* Models */,
+				53F571C72C1C5CB300E1511A /* Helpers */,
 				531DDACD2BE4C173003004DB /* MeaListApp.swift */,
 				531DDACF2BE4C173003004DB /* ContentView.swift */,
 				53D55AEC2BF7329F00E3DC4F /* MLCalendarView.swift */,
@@ -178,6 +181,14 @@
 				53D55AEE2BFC7C2E00E3DC4F /* GroupBoxView.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		53F571C72C1C5CB300E1511A /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				53F571C82C1C5CF100E1511A /* MLDateFormatter.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -312,6 +323,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				531DDB062BF1EAB2003004DB /* MLWeek.swift in Sources */,
+				53F571C92C1C5CF100E1511A /* MLDateFormatter.swift in Sources */,
 				531DDAFE2BE8FAD3003004DB /* MLContainer.swift in Sources */,
 				53D55AEF2BFC7C2E00E3DC4F /* GroupBoxView.swift in Sources */,
 				531DDB082BF1EB19003004DB /* MLDay.swift in Sources */,

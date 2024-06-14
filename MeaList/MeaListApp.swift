@@ -25,7 +25,7 @@ struct MeaListApp: App {
 
     var body: some Scene {
         WindowGroup {
-            GroupBoxView()
+            MLCalendarView()
         }
         //.modelContainer(sharedModelContainer)
     }

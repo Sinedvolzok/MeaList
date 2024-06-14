@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct GroupBoxView: View {
-    @State private var items: [Item] = []
+    @State private var days: Set<MLDay> = []
     @State var weekday: String = "WEDNESDAY"
     @State var day: String = "MAY 15"
     @State private var isAddMealTapped: Bool = false
@@ -22,7 +22,7 @@ struct GroupBoxView: View {
             LazyVGrid(columns: [.init()],spacing: 20) {
                 GroupBox(label: DateLabel(weekday: weekday, day: day)) {
                     if isAddMealTapped {
-                        AddingMealView(items: $items, isLeaveView: $isAddMealTapped, selectedId: $selectedId)
+                        AddingMealView(days: $days, isLeaveView: $isAddMealTapped, selectedId: $selectedId)
                     } else {
                         Button {
                             let isSelected = selectedId != day
@@ -56,7 +56,7 @@ struct AddMealButton: View {
 }
 
 struct AddingMealView: View {
-    @Binding var items: [Item]
+    @Binding var days: Set<MLDay>
     @Binding var isLeaveView: Bool
     @Binding var selectedId : String?
     @State private var dishName: String = ""
@@ -97,8 +97,14 @@ struct AddingMealView: View {
                     }
                     Spacer()
                     Button {
-                        items.append(Item(timestamp: .now))
-                        print(items.count)
+                        guard let id = selectedId else { return }
+                        let dish = MLDish(title: dishName)
+                        let meal = MLMeal(dateId: id, type: selectedMealType, dishes: [dish])
+                        guard let date = MLDateFormatter.shared.getDate(from: id) else { fatalError("Wrong data format!") }
+                        var day = MLDay(date: date)
+                        day.meals.append(meal)
+                        days.insert(day)
+                        print(id)
                         isLeaveView = false
                     } label: {
                         Label("Add meal", systemImage: "plus")

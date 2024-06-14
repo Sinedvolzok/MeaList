@@ -12,7 +12,7 @@ struct MLCalendarView: View {
     let columns = [GridItem(.adaptive(minimum: 320))]
     let currentWeek: String = MLWeek.getCurrentWeek()
     
-    @State private var items: [Item] = []
+    @State private var days: Set<MLDay> = []
     @State private var isAddMealTapped: Bool = false
     @State private var selectedDayId : String?
     
@@ -22,25 +22,21 @@ struct MLCalendarView: View {
                 LazyVGrid(columns: columns, alignment: .leading) {
                     ForEach(weeks) { week in
                         Section(header: TitleView(week: week)) {
-                            let days = week.getWeekdays()
-                            ForEach(days) { day in
-                                let meals = day.getMeals(from: MLMeal.mockedData2)
-                                GroupBox(label: DateLabel(weekday: day.date.weekday, day: day.title)) {
-                                    if meals.isEmpty {
-                                        if isAddMealTapped && selectedDayId == day.id {
-                                            AddingMealView(items: $items, isLeaveView: $isAddMealTapped, selectedId: $selectedDayId)
+                            let dates = week.getWeekdays()
+                            ForEach(dates) { date in
+                                GroupBox(label: DateLabel(weekday: date.weekday, day: date.day)) {
+                                    if let day = days.first(where: {$0.isOn(this: date)}) {
+                                        MLDayView(day: day)
+                                    } else {
+                                        if isAddMealTapped && selectedDayId == date.id {
+                                            AddingMealView(days: $days, isLeaveView: $isAddMealTapped, selectedId: $selectedDayId)
                                         } else {
                                             Button {
-                                                let isSelected = selectedDayId != day.id
-                                                selectedDayId = isSelected ? day.id : nil
+                                                selectedDayId = date.id
                                                 isAddMealTapped = true
                                             } label: {
                                                 MLMealPlaceholder()
                                             }
-                                        }
-                                    } else {
-                                        ForEach(meals) { meal in
-                                            MLMealView(meal: meal)
                                         }
                                     }
                                 }.groupBoxStyle(DayGroupBoxStyle())
@@ -63,19 +59,22 @@ struct MLCalendarView: View {
     MLCalendarView()
 }
 
-struct MLMealView: View {
-    let meal: MLMeal
-    let dishes = ["Broccly", "Soup"]
+struct MLDayView: View {
+    let day: MLDay
     var body: some View {
-        GroupBox(label: Text(meal.type.rawValue)){
-            //    let dishes = meal.getDishes(from: //MLDish.mockedData)
-            ForEach(dishes, id: \.self) { dish in
-                Text(dish)
-                if dish != dishes.last {
-                    Divider()
-                }
+        VStack {
+            ForEach(day.meals) { meal in
+                GroupBox(label: Text(meal.type.rawValue)){
+                    let dishes = meal.dishes
+                    ForEach(dishes) { dish in
+                        HStack {
+                            Text(dish.title)
+                            Spacer()
+                        }
+                    }
+                }.groupBoxStyle(MealGroupBoxStyle())
             }
-        }.groupBoxStyle(MealGroupBoxStyle())
+        }
     }
 }
 

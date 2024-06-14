@@ -21,9 +21,9 @@ extension MLWeek: MLSection, Identifiable {
     }
 }
 extension MLWeek {
-    func getWeekdays(from date: Date = .now) -> [MLDay] {
+    func getWeekdays(from date: Date = .now) -> [Date] {
         let dates = Date.getDatesRange(from: date)
             .filter{$0.weekId == self.id}
-        return dates.map(MLDay.init)
+        return dates
     }
 }

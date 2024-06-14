@@ -11,16 +11,12 @@ struct MLMeal: Identifiable  {
     let id: UUID
     let dateId: String
     let type: MLMealType
-    init(id: UUID = UUID(), dateId: String, type: MLMealType) {
+    let dishes: [MLDish]
+    init(id: UUID = UUID(), dateId: String, type: MLMealType, dishes: [MLDish]) {
         self.id = id
         self.dateId = dateId
         self.type = type
-    }
-}
-
-extension MLMeal {
-    func getDishes(from data: [MLDish]) -> [MLDish] {
-        data.filter{ $0.mealId == id }
+        self.dishes = dishes
     }
 }
 
