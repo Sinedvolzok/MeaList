@@ -39,19 +39,41 @@ struct GroupBoxView: View {
     }
 }
 
-struct AddMealButton: View {
-    @Binding var tapped: Bool
+struct MockDayView: View {
+    let day: MLDay = MLDay(date: .now, meals: MLMeal.mockedData)
+    @State var days: Set<MLDay> = [MLDay(date: .now, meals: MLMeal.mockedData)]
+    @State var isAddMealTapped: Bool = true
+    @State var selectedDayId : String? = "24_06_17"
+    let mockDishes = ["Banana","Vanilla","Cooper"]
     var body: some View {
-        Button {
-            tapped = true
-        } label: {
-            HStack{
-                Label("Add meal...", systemImage: "plus")
-                Spacer()
+        VStack {
+            ForEach(MLMealType.allCases) { mealType in
+                if Set(day.meals.map(\.type)).contains(mealType) {
+                    GroupBox(label: Text(mealType.rawValue)) {
+                        ForEach(day.meals) { meal in
+                            HStack {
+                                if meal.type == mealType {
+                                    Text(meal.dish.title).padding()
+                                    Spacer()
+                                }
+                            }
+                        }
+                    }.groupBoxStyle(.meal)
+                }
             }
+            //ForEach(day.meals) { meal in
+            //    GroupBox(label: Text(meal.type.rawValue)){
+            //        let dishes = meal.dishes
+            //        ForEach(dishes) { dish in
+            //            HStack {
+            //                Text(dish.title)
+            //                Spacer()
+            //            }
+            //        }
+            //    }.groupBoxStyle(MealGroupBoxStyle())
+            //}
+            AddMealButton(day: day, tapped: $isAddMealTapped, selectedDayId: $selectedDayId)
         }
-        .padding()
-        .foregroundStyle(.secondary)
     }
 }
 
@@ -97,13 +119,24 @@ struct AddingMealView: View {
                     }
                     Spacer()
                     Button {
-                        guard let id = selectedId else { return }
+                        guard let id = selectedId 
+                        else { return }
+                        
                         let dish = MLDish(title: dishName)
-                        let meal = MLMeal(dateId: id, type: selectedMealType, dishes: [dish])
-                        guard let date = MLDateFormatter.shared.getDate(from: id) else { fatalError("Wrong data format!") }
-                        var day = MLDay(date: date)
-                        day.meals.append(meal)
-                        days.insert(day)
+                        let meal = MLMeal(dateId: id, 
+                                          type: selectedMealType,
+                                          dish: dish)
+                        
+                        guard let date = MLDateFormatter.shared.getDate(from: id)
+                        else { return }
+                        
+                        if let existDay = days.first(where: {$0.date.id == date.id}) {
+                            existDay.meals.append(meal)
+                        } else {
+                            let day = MLDay(date: date)
+                            day.meals.append(meal)
+                            days.insert(day)
+                        }
                         print(id)
                         isLeaveView = false
                     } label: {
@@ -210,5 +243,5 @@ struct DayGroupBoxStyle: GroupBoxStyle {
 }
 #Preview {
     //AddingMealView()
-    GroupBoxView()
+    MockDayView()
 }

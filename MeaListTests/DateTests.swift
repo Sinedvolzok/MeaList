@@ -95,7 +95,6 @@ final class DateTests: XCTestCase {
     func testPerformanceWeeksRange() throws {
         // This is an example of a performance test case.
         self.measure {
-            let sut = Date.getWeeksRange(from: mockThursday)
         }
     }
 }

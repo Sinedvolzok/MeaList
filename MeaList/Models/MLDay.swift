@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct MLDay {
+class MLDay {
     let date: Date
     var meals: [MLMeal]
     
@@ -15,14 +15,13 @@ struct MLDay {
         self.date = date
         self.meals = meals
     }
-    
-    //init(id: String) {
-        
-        //self.init(date: <#T##Date#>)
-    //}
 }
 
 extension MLDay: Hashable {
+    static func == (lhs: MLDay, rhs: MLDay) -> Bool {
+        lhs.id == rhs.id
+    }
+    
     func hash(into hasher: inout Hasher) {
         hasher.combine(id)
     }

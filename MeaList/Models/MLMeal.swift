@@ -11,12 +11,12 @@ struct MLMeal: Identifiable  {
     let id: UUID
     let dateId: String
     let type: MLMealType
-    let dishes: [MLDish]
-    init(id: UUID = UUID(), dateId: String, type: MLMealType, dishes: [MLDish]) {
+    let dish: MLDish
+    init(id: UUID = UUID(), dateId: String, type: MLMealType, dish: MLDish) {
         self.id = id
         self.dateId = dateId
         self.type = type
-        self.dishes = dishes
+        self.dish = dish
     }
 }
 

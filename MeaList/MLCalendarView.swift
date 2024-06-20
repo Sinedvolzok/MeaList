@@ -26,7 +26,10 @@ struct MLCalendarView: View {
                             ForEach(dates) { date in
                                 GroupBox(label: DateLabel(weekday: date.weekday, day: date.day)) {
                                     if let day = days.first(where: {$0.isOn(this: date)}) {
-                                        MLDayView(day: day)
+                                        MLDayView(day: day,
+                                                  days: $days,
+                                                  isAddMealTapped: $isAddMealTapped,
+                                                  selectedDayId: $selectedDayId)
                                     } else {
                                         if isAddMealTapped && selectedDayId == date.id {
                                             AddingMealView(days: $days, isLeaveView: $isAddMealTapped, selectedId: $selectedDayId)
@@ -53,28 +56,56 @@ struct MLCalendarView: View {
     }
 }
 
-
-
 #Preview {
     MLCalendarView()
 }
 
 struct MLDayView: View {
     let day: MLDay
+    @Binding var days: Set<MLDay>
+    @Binding var isAddMealTapped: Bool
+    @Binding var selectedDayId : String?
     var body: some View {
         VStack {
-            ForEach(day.meals) { meal in
-                GroupBox(label: Text(meal.type.rawValue)){
-                    let dishes = meal.dishes
-                    ForEach(dishes) { dish in
-                        HStack {
-                            Text(dish.title)
-                            Spacer()
+            ForEach(MLMealType.allCases) { mealType in
+                if Set(day.meals.map(\.type)).contains(mealType) {
+                    GroupBox(label: Text(mealType.rawValue)) {
+                        ForEach(day.meals) { meal in
+                            HStack {
+                                if meal.type == mealType {
+                                    Text(meal.dish.title).padding(8)
+                                    Spacer()
+                                }
+                            }
                         }
-                    }
-                }.groupBoxStyle(MealGroupBoxStyle())
+                    }.groupBoxStyle(.meal)
+                }
+            }
+            if isAddMealTapped && selectedDayId == day.id {
+                AddingMealView(days: $days, isLeaveView: $isAddMealTapped, selectedId: $selectedDayId)
+            } else {
+                AddMealButton(day: day, tapped: $isAddMealTapped, selectedDayId: $selectedDayId)
             }
         }
+    }
+}
+
+struct AddMealButton: View {
+    let day: MLDay
+    @Binding var tapped: Bool
+    @Binding var selectedDayId : String?
+    var body: some View {
+        Button {
+            tapped = true
+            selectedDayId = day.id
+        } label: {
+            HStack{
+                Label("Add meal...", systemImage: "plus")
+                Spacer()
+            }
+        }
+        .padding()
+        .foregroundStyle(.secondary)
     }
 }
 
