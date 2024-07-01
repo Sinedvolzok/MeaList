@@ -61,17 +61,6 @@ struct MockDayView: View {
                     }.groupBoxStyle(.meal)
                 }
             }
-            //ForEach(day.meals) { meal in
-            //    GroupBox(label: Text(meal.type.rawValue)){
-            //        let dishes = meal.dishes
-            //        ForEach(dishes) { dish in
-            //            HStack {
-            //                Text(dish.title)
-            //                Spacer()
-            //            }
-            //        }
-            //    }.groupBoxStyle(MealGroupBoxStyle())
-            //}
             AddMealButton(day: day, tapped: $isAddMealTapped, selectedDayId: $selectedDayId)
         }
     }
@@ -109,6 +98,7 @@ struct AddingMealView: View {
                 HStack {
                     Button {
                         isLeaveView = false
+                        dishName = ""
                     } label: {
                         Text("Cancel")
                             .padding(12)
@@ -139,6 +129,7 @@ struct AddingMealView: View {
                         }
                         print(id)
                         isLeaveView = false
+                        dishName = ""
                     } label: {
                         Label("Add meal", systemImage: "plus")
                             .font(.headline)

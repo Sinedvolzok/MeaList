@@ -15,24 +15,23 @@ struct MLCalendarView: View {
     @State private var days: Set<MLDay> = []
     @State private var isAddMealTapped: Bool = false
     @State private var selectedDayId : String?
+    @State private var isScrollDisabled: Bool = false
     
     var body: some View {
-        ScrollViewReader { proxy in
-            ScrollView {
-                LazyVGrid(columns: columns, alignment: .leading) {
-                    ForEach(weeks) { week in
-                        Section(header: TitleView(week: week)) {
-                            let dates = week.getWeekdays()
-                            ForEach(dates) { date in
-                                GroupBox(label: DateLabel(weekday: date.weekday, day: date.day)) {
-                                    if let day = days.first(where: {$0.isOn(this: date)}) {
-                                        MLDayView(day: day,
-                                                  days: $days,
-                                                  isAddMealTapped: $isAddMealTapped,
-                                                  selectedDayId: $selectedDayId)
-                                    } else {
-                                        if isAddMealTapped && selectedDayId == date.id {
-                                            AddingMealView(days: $days, isLeaveView: $isAddMealTapped, selectedId: $selectedDayId)
+        ZStack {
+            ScrollViewReader { proxy in
+                ScrollView {
+                    LazyVGrid(columns: columns, alignment: .leading) {
+                        ForEach(weeks) { week in
+                            Section(header: TitleView(week: week)) {
+                                let dates = week.getWeekdays()
+                                ForEach(dates) { date in
+                                    GroupBox(label: DateLabel(weekday: date.weekday, day: date.day)) {
+                                        if let day = days.first(where: {$0.isOn(this: date)}) {
+                                            MLDayView(day: day,
+                                                      days: $days,
+                                                      isAddMealTapped: $isAddMealTapped,
+                                                      selectedDayId: $selectedDayId)
                                         } else {
                                             Button {
                                                 selectedDayId = date.id
@@ -41,17 +40,23 @@ struct MLCalendarView: View {
                                                 MLMealPlaceholder()
                                             }
                                         }
-                                    }
-                                }.groupBoxStyle(DayGroupBoxStyle())
+                                    }.groupBoxStyle(DayGroupBoxStyle())
+                                }
                             }
                         }
                     }
                 }
+                .onAppear {
+                    proxy.scrollTo(currentWeek)
+                }
+                .scrollDisabled(isAddMealTapped)
+                .safeAreaPadding()
             }
-            .onAppear {
-                proxy.scrollTo(currentWeek)
-            }
-            .safeAreaPadding()
+            .blur(radius: isAddMealTapped ? 3:0)
+            AddingMealView(days: $days, 
+                           isLeaveView: $isAddMealTapped,
+                           selectedId: $selectedDayId)
+            .opacity(isAddMealTapped ? 1:0)
         }
     }
 }
@@ -64,7 +69,7 @@ struct MLDayView: View {
     let day: MLDay
     @Binding var days: Set<MLDay>
     @Binding var isAddMealTapped: Bool
-    @Binding var selectedDayId : String?
+    @Binding var selectedDayId: String?
     var body: some View {
         VStack {
             ForEach(MLMealType.allCases) { mealType in
@@ -81,11 +86,9 @@ struct MLDayView: View {
                     }.groupBoxStyle(.meal)
                 }
             }
-            if isAddMealTapped && selectedDayId == day.id {
-                AddingMealView(days: $days, isLeaveView: $isAddMealTapped, selectedId: $selectedDayId)
-            } else {
-                AddMealButton(day: day, tapped: $isAddMealTapped, selectedDayId: $selectedDayId)
-            }
+            AddMealButton(day: day,
+                          tapped: $isAddMealTapped,
+                          selectedDayId: $selectedDayId)
         }
     }
 }
