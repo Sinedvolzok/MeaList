@@ -14,7 +14,7 @@ final class MLMealTests: XCTestCase {
     override func setUpWithError() throws {
         try super.setUpWithError()
         let id = UUID(uuidString: "75F2330F-966F-49BA-B5C8-C860E21F6F9A")!
-        meal = MLMeal(id: id, dateId: "20_05_10", type: .breakfast, dish: MLDish(title: "BBB"))
+        meal = MLMeal(dateId: "20_05_10", type: .breakfast, dish: MLDish(title: "BBB"))
     }
 
     override func tearDownWithError() throws {

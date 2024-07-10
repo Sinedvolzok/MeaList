@@ -15,6 +15,7 @@ struct MLCalendarView: View {
     @State private var days: Set<MLDay> = []
     @State private var isAddMealTapped: Bool = false
     @State private var selectedDayId : String?
+    @State private var selectedMealId : String?
     @State private var isScrollDisabled: Bool = false
     
     var body: some View {
@@ -70,18 +71,16 @@ struct MLDayView: View {
     @Binding var days: Set<MLDay>
     @Binding var isAddMealTapped: Bool
     @Binding var selectedDayId: String?
+    @State var selectedDishId: UUID?
     var body: some View {
         VStack {
             ForEach(MLMealType.allCases) { mealType in
                 if Set(day.meals.map(\.type)).contains(mealType) {
                     GroupBox(label: Text(mealType.rawValue)) {
                         ForEach(day.meals) { meal in
-                            HStack {
-                                if meal.type == mealType {
-                                    Text(meal.dish.title).padding(8)
-                                    Spacer()
-                                }
-                            }
+                            MLMealCellView(meal: meal,
+                                           mealType: mealType,
+                                           selectedDishId: $selectedDishId)
                         }
                     }.groupBoxStyle(.meal)
                 }

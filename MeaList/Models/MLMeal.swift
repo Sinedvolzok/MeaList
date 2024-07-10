@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct MLMeal: Identifiable  {
+struct MLMeal: Identifiable {
     let id: UUID
     let dateId: String
     let type: MLMealType
@@ -26,7 +26,7 @@ extension MLMeal: Equatable {
     }
 }
 
-enum MLMealType: String {
+enum MLMealType: String{
     case breakfast
     case lunch
     case dinner
