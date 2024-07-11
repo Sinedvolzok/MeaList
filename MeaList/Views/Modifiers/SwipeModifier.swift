@@ -1,30 +1,12 @@
 //
-//  SwiftUIView.swift
+//  SwipeModifier.swift
 //  MeaList
 //
-//  Created by Denis Kozlov on 02.07.2024.
+//  Created by Denis Kozlov on 11.07.2024.
 //
 
+import Foundation
 import SwiftUI
-
-
-struct MyView: View {
-    @State var color: Color
-    var body: some View {
-        VStack {
-            ForEach(0..<5) { _ in
-                Text("Hello, World!")
-                    .frame(height: 50)
-                    .foregroundStyle(color)
-                    // Use the CustomSwipe gesture on each text view and apply offset modifier
-                    .onSwipe {
-                        Image(systemName: "globe")
-                        Image(systemName: "star")
-                    }
-            }
-        }
-    }
-}
 
 extension View {
     func onSwipe( @ViewBuilder content: @escaping () -> some View) -> some View {
@@ -74,23 +56,4 @@ struct SwipeModifier<Actions: View>: ViewModifier {
                     .opacity(opacity)
         }
     }
-}
-
-
-
-
-struct CustomSwipe: Gesture {
-    @Binding var offset: CGSize
-    
-    var body: some Gesture {
-        DragGesture()
-            .onChanged { value in
-                offset = CGSize(width: value.translation.width,
-                                height: 0)
-            }
-    }
-}
-
-#Preview {
-    MyView(color: .white)
 }

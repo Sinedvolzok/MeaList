@@ -32,7 +32,6 @@ struct GroupBoxView: View {
                             MLMealPlaceholder()
                         }
                     }
-                    
                 }.groupBoxStyle(DayGroupBoxStyle())
             }
         }.safeAreaPadding()
@@ -67,61 +66,6 @@ struct MockDayView: View {
         }
     }
 }
-
-struct SwipeGesture: Gesture {
-    public enum Direction: String { case left, right, up, down }
-    public typealias Value = Direction
-    
-    public var body: AnyGesture<Direction> {
-        AnyGesture(
-        DragGesture(minimumDistance: 10, 
-                    coordinateSpace: .local).map { offset in
-            let horizontalAmount = offset.translation.width
-            let verticalAmount = offset.translation.height
-            
-            if abs(horizontalAmount) > abs(verticalAmount) {
-                return horizontalAmount < 0 ? .left : .right
-            } else {
-                return verticalAmount < 0 ? .up : .down
-            }
-        }
-        )
-    }
-}
-
-struct DestructiveStyle: ButtonStyle {
-    func makeBody(configuration: Configuration) -> some View {
-        configuration.label
-            .padding(8)
-            .foregroundStyle(.red)
-            .background(.red.opacity(0.2), in: Capsule())
-            .opacity(configuration.isPressed ? 0.5 : 1)
-    }
-}
-
-extension ButtonStyle where Self == DestructiveStyle {
-    static var destructive: Self { Self() }
-}
-
-struct RegularStyle: ButtonStyle {
-    func makeBody(configuration: Configuration) -> some View {
-        configuration.label
-            .padding(8)
-            .background(Color(UIColor.quaternarySystemFill), in: Capsule())
-            .opacity(configuration.isPressed ? 0.5 : 1)
-    }
-}
-
-extension ButtonStyle where Self == RegularStyle {
-    static var regular: Self { Self() }
-}
-
-//#Preview {
-//    Button(action: { print("Deleted") }) {
-//        Image(systemName: "pencil.line")
-//    }
-//    .buttonStyle(.regular)
-//}
 
 struct AddingMealView: View {
     @Binding var days: Set<MLDay>
@@ -203,13 +147,14 @@ struct AddingMealView: View {
                 }
             }.groupBoxStyle(.meal)
         }
+        .frame(maxWidth: 320)
         .safeAreaPadding()
         .background(Color(uiColor: .secondarySystemFill))
         .clipShape(RoundedRectangle(cornerRadius: /*@START_MENU_TOKEN@*/25.0/*@END_MENU_TOKEN@*/))
         .shadow(radius: 12, y: 8)
     }
 }
-
+// MARK: - DateLabel
 struct DateLabel: View {
     var weekday: String
     var day: String
@@ -223,7 +168,7 @@ struct DateLabel: View {
         }
     }
 }
-
+// MARK: - MLMealPlaceholder
 struct MLMealPlaceholder: View {
     var body: some View {
         VStack {
@@ -242,64 +187,12 @@ struct MLMealPlaceholder: View {
     }
 }
 
-//#Preview {
-//    DateLabel()
-//}
-// MARK: - Styles
-
-extension GroupBoxStyle where Self == MealGroupBoxStyle {
-    static var meal: Self { Self() }
-}
-
-extension GroupBoxStyle where Self == DayGroupBoxStyle {
-    static var day: Self { Self() }
-}
-
-struct MealGroupBoxStyle: GroupBoxStyle {
-    func makeBody(configuration: Configuration) -> some View {
-        VStack(alignment: .leading) {
-            configuration.label
-                .padding(.top, 8)
-                .foregroundColor(.secondary)
-            VStack(alignment: .leading, spacing: 2) {
-                configuration.content
-            }
-            .padding()
-            .background(
-                Color(
-                    UIColor.tertiarySystemBackground))
-            .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
-            .overlay(
-                    RoundedRectangle(cornerRadius: 16)
-                        .stroke(.secondary, lineWidth: 0.5)
-                )
-            .shadow(color: .black.opacity(0.1), radius: 8.0, x: 4.0, y: 8.0)
-        }
-    }
-}
-
-struct DayGroupBoxStyle: GroupBoxStyle {
-    func makeBody(configuration: Configuration) -> some View {
-        VStack(alignment: .leading) {
-            configuration.label
-                .padding(.top)
-                .foregroundColor(.secondary)
-            VStack(alignment: .leading) {
-                configuration.content
-            }
-            .padding()
-            .background(
-                Color(
-                    UIColor.secondarySystemBackground))
-            .clipShape(RoundedRectangle(cornerRadius: 28, style: .continuous))
-        }
-        .padding(.leading)
-        .padding(.trailing)
-    }
-}
 #Preview {
-    //AddingMealView()
-    MockDayView()
+    VStack {
+        MockDayView()
+    }
+    .padding()
+    .safeAreaPadding()
 }
 
 struct MLMealCellView: View {

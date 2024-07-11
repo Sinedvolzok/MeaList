@@ -7,6 +7,7 @@
 
 import Foundation
 
+@Observable
 class MLDay {
     let date: Date
     var meals: [MLMeal]
