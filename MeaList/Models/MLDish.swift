@@ -9,7 +9,7 @@ import Foundation
 
 struct MLDish: Identifiable {
     let id: UUID
-    let title: String
+    var title: String
     init(id: UUID = UUID(), title: String) {
         self.id = id
         self.title = title

@@ -6,12 +6,14 @@
 //
 
 import Foundation
+import Observation
 
-struct MLMeal: Identifiable {
+@Observable
+class MLMeal: Identifiable {
     let id: UUID
     let dateId: String
-    let type: MLMealType
-    let dish: MLDish
+    var type: MLMealType
+    var dish: MLDish
     init(id: UUID = UUID(), dateId: String, type: MLMealType, dish: MLDish) {
         self.id = id
         self.dateId = dateId

@@ -7,12 +7,18 @@
 
 import SwiftUI
 
+enum AddingMealViewState {
+    case add
+    case edit
+    case disable
+}
+
 struct MLCalendarView: View {
+    @Environment(\.calendarEnvironmentValue) private var calendar
+    
     let weeks: [MLWeek] = MLWeek.getWeeks()
     let columns = [GridItem(.adaptive(minimum: 320))]
     let currentWeek: String = MLWeek.getCurrentWeek()
-    
-    @State private var days: Set<MLDay> = []
     @State private var isAddMealTapped: Bool = false
     @State private var selectedDayId : String?
     @State private var selectedMealId : String?
@@ -27,10 +33,9 @@ struct MLCalendarView: View {
                             Section(header: TitleView(week: week)) {
                                 let dates = week.getWeekdays()
                                 ForEach(dates) { date in
-                                    GroupBox(label: DateLabel(weekday: date.weekday, day: date.day)) {
-                                        if let day = days.first(where: {$0.isOn(this: date)}) {
+                                    GroupBox(label: MLDateLabel(weekday: date.weekday, day: date.day)) {
+                                        if let day = calendar.days.first(where: {$0.isOn(this: date)}) {
                                             MLDayView(day: day,
-                                                      days: $days,
                                                       isAddMealTapped: $isAddMealTapped,
                                                       selectedDayId: $selectedDayId)
                                         } else {
@@ -54,8 +59,7 @@ struct MLCalendarView: View {
                 .safeAreaPadding()
             }
             .blur(radius: isAddMealTapped ? 3:0)
-            AddingMealView(days: $days, 
-                           isLeaveView: $isAddMealTapped,
+            AddingMealView(isLeaveView: $isAddMealTapped,
                            selectedId: $selectedDayId)
             .opacity(isAddMealTapped ? 1:0)
         }
@@ -76,4 +80,5 @@ struct TitleView: View {
 
 #Preview {
     MLCalendarView()
+        .environment(\.calendarEnvironmentValue, MLCalendar())
 }

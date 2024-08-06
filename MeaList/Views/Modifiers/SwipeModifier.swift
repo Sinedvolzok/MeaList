@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 extension View {
-    func onSwipe( @ViewBuilder content: @escaping () -> some View) -> some View {
+    func onSwipe(@ViewBuilder content: @escaping () -> some View) -> some View {
         modifier(SwipeModifier(actions: content))
     }
 }

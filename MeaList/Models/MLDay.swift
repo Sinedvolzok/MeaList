@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Observation
 
 @Observable
 class MLDay {
@@ -35,10 +36,6 @@ extension MLDay: MLDate {
 }
 
 extension MLDay {
-    func getMeals(from data: [MLMeal]) -> [MLMeal] {
-        data.filter{ $0.dateId == date.id }
-    }
-    
     func isOn(this date: Date) -> Bool {
         self.date.id == date.id
     }

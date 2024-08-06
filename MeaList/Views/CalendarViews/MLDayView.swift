@@ -9,7 +9,6 @@ import SwiftUI
 
 struct MLDayView: View {
     let day: MLDay
-    @Binding var days: Set<MLDay>
     @Binding var isAddMealTapped: Bool
     @Binding var selectedDayId: String?
     @State var selectedDishId: UUID?
