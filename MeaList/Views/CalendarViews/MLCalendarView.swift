@@ -7,11 +7,7 @@
 
 import SwiftUI
 
-enum AddingMealViewState {
-    case add
-    case edit
-    case disable
-}
+
 
 struct MLCalendarView: View {
     @Environment(\.calendarEnvironmentValue) private var calendar
@@ -19,10 +15,6 @@ struct MLCalendarView: View {
     let weeks: [MLWeek] = MLWeek.getWeeks()
     let columns = [GridItem(.adaptive(minimum: 320))]
     let currentWeek: String = MLWeek.getCurrentWeek()
-    @State private var isAddMealTapped: Bool = false
-    @State private var selectedDayId : String?
-    @State private var selectedMealId : String?
-    @State private var isScrollDisabled: Bool = false
     
     var body: some View {
         ZStack {
@@ -35,13 +27,11 @@ struct MLCalendarView: View {
                                 ForEach(dates) { date in
                                     GroupBox(label: MLDateLabel(weekday: date.weekday, day: date.day)) {
                                         if let day = calendar.days.first(where: {$0.isOn(this: date)}) {
-                                            MLDayView(day: day,
-                                                      isAddMealTapped: $isAddMealTapped,
-                                                      selectedDayId: $selectedDayId)
+                                            MLDayView(day: day)
                                         } else {
                                             Button {
-                                                selectedDayId = date.id
-                                                isAddMealTapped = true
+                                                calendar.selectedDay = MLDay(date: date)
+                                                calendar.state = .adding
                                             } label: {
                                                 MLMealPlaceholder()
                                             }
@@ -55,13 +45,22 @@ struct MLCalendarView: View {
                 .onAppear {
                     proxy.scrollTo(currentWeek)
                 }
-                .scrollDisabled(isAddMealTapped)
+                .scrollDisabled(calendar.state != .viewing)
                 .safeAreaPadding()
             }
-            .blur(radius: isAddMealTapped ? 3:0)
-            AddingMealView(isLeaveView: $isAddMealTapped,
-                           selectedId: $selectedDayId)
-            .opacity(isAddMealTapped ? 1:0)
+            .blur(radius: calendar.state != .viewing ? 3:0)
+            VStack {
+                switch calendar.state {
+                case .adding:
+                    MLAddingMealView(isEdit: false)
+                case .editing:
+                    MLAddingMealView(isEdit: true)
+                case .viewing:
+                    EmptyView()
+                case .deleting:
+                    EmptyView()
+                }
+            }
         }
     }
 }

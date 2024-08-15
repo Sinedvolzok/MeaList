@@ -8,10 +8,8 @@
 import SwiftUI
 
 struct MLDayView: View {
+    @Environment(\.calendarEnvironmentValue) private var calendar
     let day: MLDay
-    @Binding var isAddMealTapped: Bool
-    @Binding var selectedDayId: String?
-    @State var selectedDishId: UUID?
     var body: some View {
         VStack {
             ForEach(MLMealType.allCases) { mealType in
@@ -19,27 +17,23 @@ struct MLDayView: View {
                     GroupBox(label: Text(mealType.rawValue)) {
                         ForEach(day.meals) { meal in
                             MLMealCellView(meal: meal,
-                                           mealType: mealType,
-                                           selectedDishId: $selectedDishId)
+                                           mealType: mealType)
                         }
                     }.groupBoxStyle(.meal)
                 }
             }
-            AddMealButton(day: day,
-                          tapped: $isAddMealTapped,
-                          selectedDayId: $selectedDayId)
+            AddMealButton(day: day)
         }
     }
 }
 // MARK: - AddMealButton
 struct AddMealButton: View {
+    @Environment(\.calendarEnvironmentValue) private var calendar
     let day: MLDay
-    @Binding var tapped: Bool
-    @Binding var selectedDayId : String?
     var body: some View {
         Button {
-            tapped = true
-            selectedDayId = day.id
+            calendar.selectedDay = day
+            calendar.state = .adding
         } label: {
             HStack{
                 Label("Add meal...", systemImage: "plus")
@@ -50,6 +44,8 @@ struct AddMealButton: View {
         .foregroundStyle(.secondary)
     }
 }
-//#Preview {
-//    MLDayView(day: MLDay(date: .now), days: <#Binding<Set<MLDay>>#>, isAddMealTapped: <#Binding<Bool>#>, selectedDayId: <#Binding<String?>#>)
-//}
+
+#Preview {
+    MLDayView(day: MLDay(date: .now))
+        .environment(\.calendarEnvironmentValue, MLCalendar())
+}

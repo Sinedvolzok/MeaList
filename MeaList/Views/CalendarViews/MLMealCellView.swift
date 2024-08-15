@@ -11,25 +11,21 @@ struct MLMealCellView: View {
     @Environment(\.calendarEnvironmentValue) private var calendar
     let meal: MLMeal
     let mealType: MLMealType
-    @Binding var selectedDishId: UUID?
     var body: some View {
-        let isSelected = meal.dish.id == selectedDishId
         HStack(spacing: 16) {
             if meal.type == mealType {
                 HStack {
                     Text(meal.dish.title)
                     Spacer()
                 }
-                .padding()
-                .background(isSelected ?
-                            Color(UIColor.quaternarySystemFill)
-                            :
-                                Color(UIColor.tertiarySystemBackground))
+                .padding(2)
+                .background(Color(UIColor.tertiarySystemBackground))
                 .clipShape(Capsule())
-                .onSwipe {
+                .onSwipe(isHidden: calendar.selectedMeal == meal) {
                     Button {
                         print("Edited")
-//                        AddingMealView(isLeaveView: $isAddMealTapped, selectedId: $selectedId)
+                        calendar.selectedMeal = meal
+                        calendar.state = .editing
                     } label: {
                         Image(systemName: "pencil.line")
                             .imageScale(.large)
@@ -38,6 +34,7 @@ struct MLMealCellView: View {
                     
                     Button {
                         print("Deleted")
+                        calendar.selectedMeal = meal
                         calendar.delete(meal)
                     } label: {
                         Image(systemName: "trash")
@@ -48,10 +45,15 @@ struct MLMealCellView: View {
                 
             }
         }
-        .padding(.leading, isSelected ? -8:0)
     }
 }
 
-//#Preview {
-    //MLMealCellView(calendar: <#T##arg#>, meal: <#T##MLMeal#>, mealType: <#T##MLMealType#>, selectedDishId: <#T##UUID?#>)
-//}
+#Preview {
+    MLMealCellView(
+        meal: MLMeal(
+            dateId: "22_05_23",
+            type: .dinner,
+            dish: MLDish(title:"Palack Panir")),
+        mealType: .dinner)
+        .environment(\.calendarEnvironmentValue, MLCalendar())
+}

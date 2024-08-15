@@ -40,9 +40,10 @@
 		53F04B3C2C4106A500008C90 /* MLCalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53F04B3B2C4106A500008C90 /* MLCalendar.swift */; };
 		53F04B412C479C9400008C90 /* MVIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53F04B402C479C9400008C90 /* MVIContainer.swift */; };
 		53F04B432C47A22800008C90 /* MLCalendarIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53F04B422C47A22800008C90 /* MLCalendarIntent.swift */; };
-		53F04B452C6201FB00008C90 /* AddingMealView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53F04B442C6201FB00008C90 /* AddingMealView.swift */; };
+		53F04B452C6201FB00008C90 /* MLAddingMealView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53F04B442C6201FB00008C90 /* MLAddingMealView.swift */; };
 		53F04B492C62028C00008C90 /* MLMealCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53F04B482C62028C00008C90 /* MLMealCellView.swift */; };
 		53F04B4B2C62032700008C90 /* MLMealPlaceholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53F04B4A2C62032700008C90 /* MLMealPlaceholder.swift */; };
+		53F04B4D2C65F2AB00008C90 /* MLCalendarViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53F04B4C2C65F2AA00008C90 /* MLCalendarViewState.swift */; };
 		53F571C92C1C5CF100E1511A /* MLDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53F571C82C1C5CF100E1511A /* MLDateFormatter.swift */; };
 /* End PBXBuildFile section */
 
@@ -100,9 +101,10 @@
 		53F04B3B2C4106A500008C90 /* MLCalendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MLCalendar.swift; sourceTree = "<group>"; };
 		53F04B402C479C9400008C90 /* MVIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MVIContainer.swift; sourceTree = "<group>"; };
 		53F04B422C47A22800008C90 /* MLCalendarIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MLCalendarIntent.swift; sourceTree = "<group>"; };
-		53F04B442C6201FB00008C90 /* AddingMealView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddingMealView.swift; sourceTree = "<group>"; };
+		53F04B442C6201FB00008C90 /* MLAddingMealView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MLAddingMealView.swift; sourceTree = "<group>"; };
 		53F04B482C62028C00008C90 /* MLMealCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MLMealCellView.swift; sourceTree = "<group>"; };
 		53F04B4A2C62032700008C90 /* MLMealPlaceholder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MLMealPlaceholder.swift; sourceTree = "<group>"; };
+		53F04B4C2C65F2AA00008C90 /* MLCalendarViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MLCalendarViewState.swift; sourceTree = "<group>"; };
 		53F571C82C1C5CF100E1511A /* MLDateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MLDateFormatter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -209,6 +211,7 @@
 				53D55AEA2BF4DA5400E3DC4F /* MLDish.swift */,
 				531DDB0C2BF1EF29003004DB /* MokedData.swift */,
 				53F04B3B2C4106A500008C90 /* MLCalendar.swift */,
+				53F04B4C2C65F2AA00008C90 /* MLCalendarViewState.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -216,7 +219,6 @@
 		53F04B242C3FB42A00008C90 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				53D55AEE2BFC7C2E00E3DC4F /* MLDateLabel.swift */,
 				53F04B292C3FB56300008C90 /* CalendarViews */,
 				53F04B262C3FB45B00008C90 /* Modifiers */,
 				53F04B252C3FB44F00008C90 /* Styles */,
@@ -244,9 +246,10 @@
 		53F04B292C3FB56300008C90 /* CalendarViews */ = {
 			isa = PBXGroup;
 			children = (
+				53D55AEE2BFC7C2E00E3DC4F /* MLDateLabel.swift */,
 				53D55AEC2BF7329F00E3DC4F /* MLCalendarView.swift */,
 				53F04B392C3FBB6800008C90 /* MLDayView.swift */,
-				53F04B442C6201FB00008C90 /* AddingMealView.swift */,
+				53F04B442C6201FB00008C90 /* MLAddingMealView.swift */,
 				53F04B482C62028C00008C90 /* MLMealCellView.swift */,
 				53F04B4A2C62032700008C90 /* MLMealPlaceholder.swift */,
 			);
@@ -435,6 +438,7 @@
 				53F04B3A2C3FBB6800008C90 /* MLDayView.swift in Sources */,
 				53F04B412C479C9400008C90 /* MVIContainer.swift in Sources */,
 				53F04B332C3FB7EF00008C90 /* ButtonStyle+.swift in Sources */,
+				53F04B4D2C65F2AB00008C90 /* MLCalendarViewState.swift in Sources */,
 				53F571C92C1C5CF100E1511A /* MLDateFormatter.swift in Sources */,
 				53F04B2F2C3FB6EC00008C90 /* DayGroupBoxStyle.swift in Sources */,
 				531DDAFE2BE8FAD3003004DB /* MLContainer.swift in Sources */,
@@ -454,7 +458,7 @@
 				53D55AEB2BF4DA5400E3DC4F /* MLDish.swift in Sources */,
 				53F04B282C3FB4A200008C90 /* SwipeModifier.swift in Sources */,
 				531DDACE2BE4C173003004DB /* MeaListApp.swift in Sources */,
-				53F04B452C6201FB00008C90 /* AddingMealView.swift in Sources */,
+				53F04B452C6201FB00008C90 /* MLAddingMealView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

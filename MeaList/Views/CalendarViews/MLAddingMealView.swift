@@ -1,5 +1,5 @@
 //
-//  AddingMealView.swift
+//  MLAddingMealView.swift
 //  MeaList
 //
 //  Created by Denis Kozlov on 06.08.2024.
@@ -7,16 +7,15 @@
 
 import SwiftUI
 
-struct AddingMealView: View {
+struct MLAddingMealView: View {
     @Environment(\.calendarEnvironmentValue) private var calendar
-    @Binding var isLeaveView: Bool
-    @Binding var selectedId: String?
+    var isEdit: Bool
     @State private var dishName: String = ""
     @State private var selectedMealType: MLMealType = .dinner
     
     var body: some View {
         VStack(alignment: .leading) {
-            GroupBox(label: Text("Adding meal...")
+            GroupBox(label: Text(isEdit ? "Editing meal..." : "Adding meal...")
                 .font(.title3)
                 .padding(.bottom)
                 .foregroundStyle(.primary)) {
@@ -42,8 +41,9 @@ struct AddingMealView: View {
                     // MARK: Buttons
                     HStack {
                         Button {
-                            isLeaveView = false
                             dishName = ""
+                            calendar.state = .viewing
+                            calendar.selectedMeal = nil
                         } label: {
                             Text("Cancel")
                                 .padding(12)
@@ -54,11 +54,19 @@ struct AddingMealView: View {
                         }
                         Spacer()
                         Button {
-                            calendar.add(dayId: selectedId, with: (selectedMealType, dishName))
-                            isLeaveView = false
+                            if isEdit {
+                                guard let selectedMeal = calendar.selectedMeal else { return }
+                                calendar.edit(selectedMeal, with: (selectedMealType, dishName))
+                            } else {
+                                guard let selectedDay = calendar.selectedDay else { return }
+                                calendar.add(to: selectedDay, with: (selectedMealType, dishName))
+                            }
                             dishName = ""
+                            calendar.state = .viewing
+                            calendar.selectedMeal = nil
                         } label: {
-                            Label("Add meal", systemImage: "plus")
+                            Label(isEdit ? "Done":"Add meal",
+                                  systemImage: isEdit ? "checkmark":"plus")
                                 .font(.headline)
                                 .padding(10)
                                 .foregroundColor(Color(
@@ -70,6 +78,10 @@ struct AddingMealView: View {
                 }
             }.groupBoxStyle(.meal)
         }
+        .onAppear {
+            dishName = calendar.selectedMeal?.dish.title ?? ""
+            selectedMealType = calendar.selectedMeal?.type ?? .dinner
+        }
         .frame(maxWidth: 320)
         .safeAreaPadding()
         .background(Color(uiColor: .secondarySystemFill))
@@ -79,5 +91,5 @@ struct AddingMealView: View {
 }
 
 #Preview {
-    AddingMealView(isLeaveView: .constant(true), selectedId: .constant(nil))
+    MLAddingMealView(isEdit: true)
 }

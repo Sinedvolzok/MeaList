@@ -13,14 +13,17 @@ import Observation
 @Observable
 class MLCalendar {
     var days: Set<MLDay> = []
-    func add(dayId: String?, with data: (type: MLMealType, name: String)) -> Void {
+    var selectedDay: MLDay?
+    var selectedMeal: MLMeal?
+    var state: MLCalendarViewState = .viewing
+    func add(to day: MLDay?, with data: (type: MLMealType, name: String)) -> Void {
         
-        guard let id = dayId else { return }
+        guard let day else { return }
         let dish = MLDish(title: data.name)
-        let meal = MLMeal(dateId: id,
+        let meal = MLMeal(dateId: day.id,
                           type: data.type,
                           dish: dish)
-        guard let date = MLDateFormatter.shared.getDate(from: id)
+        guard let date = MLDateFormatter.shared.getDate(from: day.id)
         else { return }
         
         if let existDay = days.first(where: {$0.date.id == date.id}) {

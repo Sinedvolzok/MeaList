@@ -34,6 +34,8 @@ struct SwipeModifier<Actions: View>: ViewModifier {
                                 actionWidth = abs(offset.width/3)
                                 opacity = abs(offset.width/100)
                             } else {
+                                guard actionWidth > 0
+                                else { return actionWidth = 0.1 }
                                 actionWidth -= offset.width/12
                                 opacity -= offset.width/400
                             }
@@ -52,8 +54,8 @@ struct SwipeModifier<Actions: View>: ViewModifier {
                         }
                 )
                 actions()
-                    .frame(width: actionWidth)
-                    .opacity(opacity)
+                .frame(width: actionWidth)
+                .opacity(opacity)
         }
     }
 }
